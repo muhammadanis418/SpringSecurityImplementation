@@ -1,4 +1,4 @@
-package com.example.springsecurityimplementation.entity;
+package com.example.springsecurityimplementation.model;
 
 import lombok.*;
 

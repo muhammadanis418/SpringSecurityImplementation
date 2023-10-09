@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "d2cef059-a971-456f-a82a-83ad1d071002",
+		"name": "SpringSecurityIml",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19915959"
+	},
+	"item": [
+		{
+			"name": "JWT Implementation",
+			"item": [
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"anis\",\r\n    \"password\":\"123\",\r\n    \"email\":\"anis01@gmail\",\r\n    \"about\":\"male\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/create-student",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"create-student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getJWTForSpecificRecord",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer $2a$10$42TAfzHTwIfJ.oXS2CZTx.XEQqsDq8uDyYnZaqhbltEPivw4KACYy",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"waqar\",\r\n    \"password\":\"waqar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GettAllStudent",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlzIiwiaWF0IjoxNjk2NzA4MTMwLCJleHAiOjE2OTY3MjYxMzB9.gpzBdHvD3YabmhvzpKKljP-06S3oOikw8lKuj1W2OS7tzTN-Ysahh2FJH2y9wQ9C6forGNACUYxD5BQkjK6Dcw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/home/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"home",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CurrentlyLogInUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlzIiwiaWF0IjoxNjk2ODM2NjQ5LCJleHAiOjE2OTY4NTQ2NDl9.DdUYKw827VrdrQw3B69DD8gitNw6s_E_7Lx59MHp7wBIaP3D-oDUjI89kyQmPuilQ1VyNDPN44_fvvAqZvFLTw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8081/home/current_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"home",
+								"current_user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Access Api By sending token in header",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJIYXJvb24iLCJpYXQiOjE2OTY0ODk1NDksImV4cCI6MTY5NjUwNzU0OX0.xHJ5LNO5OXHT1qcQ7lBmwjQLz7Oze1TI1bvbdR8hScEADrlPgOrqbdiblfJtqMzjjb8AvpK0PGGNhzFrsLORjA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/home/students",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"home",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Current LogIn user by sending token in header",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "haroon",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "haroon",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/home/current_user",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"home",
+						"current_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateJWTRequest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"haroon\",\r\n    \"password\":\"haroon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

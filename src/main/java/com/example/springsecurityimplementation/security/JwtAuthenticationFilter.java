@@ -25,8 +25,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private Logger logger = LoggerFactory.getLogger(OncePerRequestFilter.class);
     private JwtHelper jwtHelper;
 
-    private UserDetailsService userDetailsService;
+   private UserDetailsService userDetailsService;
 
+//private StudentService userDetailsService;
     public JwtAuthenticationFilter(JwtHelper jwtHelper, UserDetailsService userDetailsService) {
         this.jwtHelper = jwtHelper;
         this.userDetailsService = userDetailsService;
@@ -71,12 +72,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
             //fetch user detail from username
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+           UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+           logger.info("####UseerDEtails is######",userDetails);
             Boolean validateToken = this.jwtHelper.validateToken(token, userDetails);
             if (validateToken) {
 
                 //set the authentication
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
 

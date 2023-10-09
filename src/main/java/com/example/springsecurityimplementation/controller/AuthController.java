@@ -1,9 +1,11 @@
 package com.example.springsecurityimplementation.controller;
 
 
-import com.example.springsecurityimplementation.entity.JWTRequest;
-import com.example.springsecurityimplementation.entity.JWTResponse;
+import com.example.springsecurityimplementation.entity.Student;
+import com.example.springsecurityimplementation.model.JWTRequest;
+import com.example.springsecurityimplementation.model.JWTResponse;
 import com.example.springsecurityimplementation.security.JwtHelper;
+import com.example.springsecurityimplementation.service.StudentService;
 import org.slf4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/auth")
 //@Slf4j
@@ -22,12 +26,14 @@ public class AuthController {
     private UserDetailsService userDetailsService;
     private JwtHelper helper;
 
-    private Logger log;
+    private StudentService service;
 
-    public AuthController(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtHelper helper) {
+
+    public AuthController(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtHelper helper, StudentService service) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.helper = helper;
+        this.service = service;
     }
 
     @PostMapping("/login")
@@ -58,4 +64,15 @@ public class AuthController {
     public String exceptionHandler() {
         return "Credentials Invalid";
     }
+
+    @PostMapping("/create-student")
+    public Student createStudent(@RequestBody Student student) {
+        return service.createStudent(student);
+    }
+
+//    @GetMapping("/all-student")
+//    public List<Student> getAllStudent() {
+//        return service.getAllStudent();
+//    }
+
 }
